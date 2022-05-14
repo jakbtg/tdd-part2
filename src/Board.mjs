@@ -12,11 +12,7 @@ export class Board {
     var s = "";
     for (let i = 0; i < this.width; i++) {
       for (let j = 0; j < this.height; j++) {
-        if (this.hasFallingAt(i, j)) {
-          s += this.fallingBlock.getColor();
-        } else {
-          s += ".";
-        }
+        s += this.hasFallingAt(i, j) ? this.fallingBlock.getColor() : ".";
       }
       s += "\n";
     }
