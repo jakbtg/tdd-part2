@@ -48,22 +48,37 @@ export class Board {
     if (this.hasFalling()) {
       throw "already falling";
     }
+    this.startFall(block);
+  }
+
+  tick() {
+    if (this.fallingHitsFloor() || this.fallingHitsStationary()) {
+      this.stopFalling();
+    } else {
+      this.fallOneRow();
+    }
+  }
+
+  startFall(block) {
     this.fallingBlock = block;
     this.fallingBlockRow = 0;
     this.fallingBlockColumn = 1;
   }
 
-  tick() {
-    if (this.fallingBlockRow == this.height - 1) {
-      this.stationary[this.fallingBlockRow][this.fallingBlockColumn] = this.fallingBlock.getColor();
-      this.fallingBlock = null;
-    } else {
-      if (this.stationary[this.fallingBlockRow + 1][this.fallingBlockColumn] == ".") {
-        this.fallingBlockRow++;
-      } else {
-        this.stationary[this.fallingBlockRow][this.fallingBlockColumn] = this.fallingBlock.getColor();
-        this.fallingBlock = null;
-      }
-    }
+  fallOneRow() {
+    this.fallingBlockRow++;
+  }
+
+  fallingHitsStationary() {
+    return this.stationary[this.fallingBlockRow + 1][this.fallingBlockColumn] != ".";
+  }
+
+  fallingHitsFloor() {
+    return this.fallingBlockRow == this.height - 1;
+  }
+
+  stopFalling() {
+    this.stationary[this.fallingBlockRow][this.fallingBlockColumn] = this.fallingBlock.getColor();
+    this.fallingBlock = null;
   }
 }
