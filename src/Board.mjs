@@ -3,8 +3,8 @@ export class Board {
   height;
   stationary;
   fallingBlock;
-  fallingBlockRow = 0;
-  fallingBlockColumn = 1;
+  fallingBlockRow;
+  fallingBlockColumn;
 
   constructor(width, height) {
     this.width = width;
@@ -49,6 +49,8 @@ export class Board {
       throw "already falling";
     }
     this.fallingBlock = block;
+    this.fallingBlockRow = 0;
+    this.fallingBlockColumn = 1;
   }
 
   tick() {
