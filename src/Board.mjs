@@ -58,7 +58,12 @@ export class Board {
       this.stationary[this.fallingBlockRow][this.fallingBlockColumn] = this.fallingBlock.getColor();
       this.fallingBlock = null;
     } else {
-      this.fallingBlockRow++;
+      if (this.stationary[this.fallingBlockRow + 1][this.fallingBlockColumn] == ".") {
+        this.fallingBlockRow++;
+      } else {
+        this.stationary[this.fallingBlockRow][this.fallingBlockColumn] = this.fallingBlock.getColor();
+        this.fallingBlock = null;
+      }
     }
   }
 }
