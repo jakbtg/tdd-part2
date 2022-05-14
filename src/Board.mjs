@@ -21,15 +21,15 @@ export class Board {
   }
 
   hasFallingAt(x, y) {
-    return this.hasFallingBlock() && x == this.fallingBlockRow && y == 1;
+    return this.hasFalling() && x == this.fallingBlockRow && y == 1;
   }
 
-  hasFallingBlock() {
+  hasFalling() {
     return this.fallingBlock != null;
   }
 
   drop(block) {
-    if (this.hasFallingBlock()) {
+    if (this.hasFalling()) {
       throw "already falling";
     }
     this.fallingBlock = block;
