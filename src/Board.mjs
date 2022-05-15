@@ -30,7 +30,7 @@ export class Board {
 
   getColorAt(i, j) {
     if (this.hasFallingAt(i, j)) {
-      return this.fallingBlock.getColor();
+      return this.fallingBlock.blockAt(0,0);
     } else {
       return this.stationary[i][j];
     }
@@ -78,7 +78,7 @@ export class Board {
   }
 
   stopFalling() {
-    this.stationary[this.fallingBlockRow][this.fallingBlockColumn] = this.fallingBlock.getColor();
+    this.stationary[this.fallingBlockRow][this.fallingBlockColumn] = this.fallingBlock.blockAt(0,0);
     this.fallingBlock = null;
   }
 }

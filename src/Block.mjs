@@ -5,7 +5,15 @@ export class Block {
     this.color = color;
   }
 
-  getColor() {
+  width() {
+    return 1;
+  }
+
+  height() {
+    return 1;
+  }
+
+  blockAt(row, col) {
     return this.color;
   }
 }
