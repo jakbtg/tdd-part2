@@ -28,6 +28,14 @@ export class Tetromino {
         return this.orientations[this.currentOrientation];
     }
 
+    width() {
+        return this.currentShape().width();
+    }
+
+    height() {
+        return this.currentShape().height();
+    }
+
     toString() {
         return this.currentShape().toString();
     }

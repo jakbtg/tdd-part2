@@ -1,28 +1,36 @@
 export class RotatingShape {
-    blocks;
+    shape;
 
     constructor(shape) {
         var rows = (shape.replaceAll(" ", "").trim() + "\n").trim().split("\n");
-        this.blocks = [];
+        this.shape = [];
         for (let i = 0; i < rows.length; i++) {
-            this.blocks[i] = rows[i];
+            this.shape[i] = rows[i];
         }
         Object.freeze(this);
     }
 
+    width() {
+        return this.shape[0].length;
+    }
+
+    height() {
+        return this.shape.length;
+    }
+
     toString() {
-        return this.blocks.join("\n") + "\n";
+        return this.shape.join("\n") + "\n";
     }
 
     rotateRight() {
-        var rotatedBlocks = [];
-        for (let i = 0; i < this.blocks[0].length; i++) {
-            rotatedBlocks[i] = "";
-            for (let j = this.blocks.length - 1; j >= 0; j--) {
-                rotatedBlocks[i] += this.blocks[j][i];
+        var rotated = [];
+        for (let i = 0; i < this.shape[0].length; i++) {
+            rotated[i] = "";
+            for (let j = this.shape.length - 1; j >= 0; j--) {
+                rotated[i] += this.shape[j][i];
             }
         }
-        return new RotatingShape(rotatedBlocks.join("\n"));
+        return new RotatingShape(rotated.join("\n"));
     }
 
     rotateLeft() {
