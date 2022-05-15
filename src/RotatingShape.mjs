@@ -31,4 +31,8 @@ export class RotatingShape {
         }
         return new RotatingShape(rotatedBlocks.join("\n"));
     }
+
+    rotateLeft() {
+        return this.rotateRight().rotateRight().rotateRight();
+    }
 }
