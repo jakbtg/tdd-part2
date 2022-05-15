@@ -108,7 +108,7 @@ describe("The O shape", () => {
     );
   });
 
-  xit("cannot be rotated left/counter-clockwise", () => {
+  it("cannot be rotated left/counter-clockwise", () => {
     expect(shape.rotateLeft().toString()).to.equalShape(
       `.OO
        .OO
