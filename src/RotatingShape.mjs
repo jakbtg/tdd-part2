@@ -11,14 +11,7 @@ export class RotatingShape {
     }
 
     toString() {
-        var s = "";
-        for (let row = 0; row < this.blocks.length; row++) {
-            for (let col = 0; col < this.blocks[row].length; col++) {
-                s += this.blocks[row][col];
-            }
-            s += "\n";
-        }
-        return s;
+        return this.blocks.join("\n") + "\n";
     }
 
     rotateRight() {
