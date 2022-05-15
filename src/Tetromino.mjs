@@ -13,7 +13,8 @@ export class Tetromino {
         } else {
             var shape = new RotatingShape(shape);
             this.currentOrientation = currentOrientation;
-            this.orientations = [shape, shape.rotateRight(), shape.rotateRight().rotateRight(), shape.rotateLeft()].slice(0, orientations);
+            this.orientations = [shape, shape.rotateRight(), shape.rotateRight().rotateRight(), 
+                shape.rotateLeft()].slice(0, orientations);
         }
         Object.freeze(this);
     }
