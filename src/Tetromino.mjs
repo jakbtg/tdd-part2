@@ -2,6 +2,7 @@ import { RotatingShape } from "../src/RotatingShape.mjs";
 
 export class Tetromino {
     static T_SHAPE = new Tetromino(`.T.\nTTT\n...\n`);
+    static I_SHAPE = new Tetromino(`.....\n.....\nIIII.\n.....\n.....\n`);
     shape;
 
     constructor(shape) {
