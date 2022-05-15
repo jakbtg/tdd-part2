@@ -8,8 +8,6 @@ export class Tetromino {
     }
 
     toString() {
-        var s = "";
-        s += this.shape;
-        return s;
+        return this.shape;
     }
 }
