@@ -40,6 +40,10 @@ export class Tetromino {
         return this.currentShape().toString();
     }
 
+    blockAt(row, col) {
+        return this.currentShape().blockAt(row, col);
+    }
+
     rotateRight() {
         return new Tetromino(null, this.currentOrientation + 1, this.orientations);
     }

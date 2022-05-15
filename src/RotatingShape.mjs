@@ -22,6 +22,10 @@ export class RotatingShape {
         return this.shape.join("\n") + "\n";
     }
 
+    blockAt(row, col) {
+        return this.shape[row][col];
+    }
+
     rotateRight() {
         var rotated = [];
         for (let i = 0; i < this.shape[0].length; i++) {
