@@ -31,15 +31,23 @@ export class Board {
   }
 
   getColorAt(row, col) {
-    if (this.hasFallingAt(row, col)) {
-      return this.fallingBlock.blockAt(0,0);
-    } else {
-      return this.stationary[row][col];
+    var cell = this.fallingCellAt(row, col);
+    if (cell != EMPTY) {
+      return cell;
     }
+    return this.stationary[row][col];
   }
 
-  hasFallingAt(row, col) {
-    return this.hasFalling() && row == this.fallingBlockRow && col == this.fallingBlockColumn;
+  fallingCellAt(row, col) {
+    if (!this.hasFalling()) {
+      return EMPTY;
+    }
+    if (row == this.fallingBlockRow && col == this.fallingBlockColumn) {
+      //return this.fallingBlock.blockAt(row - this.fallingBlockRow, col - this.fallingBlockColumn);
+      return this.fallingBlock.blockAt(0, 0);
+    } else {
+      return EMPTY;
+    }
   }
 
   hasFalling() {
