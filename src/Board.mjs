@@ -41,14 +41,6 @@ class MovableShape {
     return new MovableShape(this.movShape, this.shapeRow + 1, this.shapeCol);
   }
 
-  width() {
-    return this.movShape.width();
-  }
-
-  height() {
-    return this.movShape.height();
-  }
-
   blockAt(row, col) {
     if (
       row >= this.shapeRow &&
@@ -68,8 +60,6 @@ export class Board {
   boardHeight;
   stationary;
   fallingShape;
-  fallingShapeRow;
-  fallingShapeColumn;
 
   constructor(width, height) {
     this.boardWidth = width;
@@ -104,17 +94,6 @@ export class Board {
     return this.stationary[row][col];
   }
 
-  cellAt(row, col) {
-    if (row >= this.fallingShapeRow &&
-      row < this.fallingShapeRow + this.fallingShape.height() &&
-      col >= this.fallingShapeColumn &&
-      col < this.fallingShapeColumn + this.fallingShape.width()) {
-      return this.fallingShape.blockAt(row - this.fallingShapeRow, col - this.fallingShapeColumn);
-    } else {
-      return EMPTY;
-    }
-  }
-
   hasFalling() {
     return this.fallingShape != null;
   }
@@ -135,14 +114,11 @@ export class Board {
       this.stopFalling();
     } else {
       this.fallingShape = test;
-      this.fallingShapeRow++;
     }
   }
 
   startFall(shape) {
     this.fallingShape = new MovableShape(shape, 0, Math.floor((this.boardWidth - shape.width()) / 2));
-    this.fallingShapeRow = 0;
-    this.fallingShapeColumn = Math.floor((this.boardWidth - shape.width()) / 2);
   }
 
   fallingHitsStationary(shape) {
