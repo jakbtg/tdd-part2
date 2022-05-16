@@ -1,4 +1,5 @@
 import { RotatingShape } from "../src/RotatingShape.mjs";
+import { shapeToString } from "./shape.mjs";
 
 export class Tetromino {
     static T_SHAPE = new Tetromino(`.T.\nTTT\n...\n`, 0, 4);
@@ -37,7 +38,7 @@ export class Tetromino {
     }
 
     toString() {
-        return this.currentShape().toString();
+        return shapeToString(this.currentShape());
     }
 
     blockAt(row, col) {

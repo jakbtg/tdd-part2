@@ -1,3 +1,5 @@
+import { shapeToString } from "./shape.mjs";
+
 export class RotatingShape {
     shape;
 
@@ -19,7 +21,7 @@ export class RotatingShape {
     }
 
     toString() {
-        return this.shape.join("\n") + "\n";
+        return shapeToString(this);
     }
 
     blockAt(row, col) {

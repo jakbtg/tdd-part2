@@ -1,3 +1,5 @@
+import { shapeToString } from "./shape.mjs";
+
 const EMPTY = ".";
 
 export class Board {
@@ -19,26 +21,27 @@ export class Board {
     return board;
   }
 
+  height() {
+    return this.height;
+  }
+
+  width() {
+    return this.width;
+  }
+
   toString() {
+    // return shapeToString(this);
     var s = "";
     for (let i = 0; i < this.height; i++) {
       for (let j = 0; j < this.width; j++) {
-        s += this.getColorAt(i, j);
+        s += this.blockAt(i, j);
       }
       s += "\n";
     }
     return s;
   }
 
-  getColorAt(row, col) {
-    var cell = this.fallingCellAt(row, col);
-    if (cell != EMPTY) {
-      return cell;
-    }
-    return this.stationary[row][col];
-  }
-
-  fallingCellAt(row, col) {
+  blockAt(row, col) {
     if (this.hasFalling() &&
       row >= this.fallingShapeRow &&
       row < this.fallingShapeRow + this.fallingShape.height() &&
@@ -46,7 +49,7 @@ export class Board {
       col < this.fallingShapeColumn + this.fallingShape.width()) {
       return this.fallingShape.blockAt(row - this.fallingShapeRow, col - this.fallingShapeColumn);
     } else {
-      return EMPTY;
+      return this.stationary[row][col];
     }
   }
 
