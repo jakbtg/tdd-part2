@@ -30,16 +30,16 @@ export class Board {
     return s;
   }
 
-  getColorAt(i, j) {
-    if (this.hasFallingAt(i, j)) {
+  getColorAt(row, col) {
+    if (this.hasFallingAt(row, col)) {
       return this.fallingBlock.blockAt(0,0);
     } else {
-      return this.stationary[i][j];
+      return this.stationary[row][col];
     }
   }
 
-  hasFallingAt(x, y) {
-    return this.hasFalling() && x == this.fallingBlockRow && y == this.fallingBlockColumn;
+  hasFallingAt(row, col) {
+    return this.hasFalling() && row == this.fallingBlockRow && col == this.fallingBlockColumn;
   }
 
   hasFalling() {
