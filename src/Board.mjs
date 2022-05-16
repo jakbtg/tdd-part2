@@ -4,9 +4,9 @@ export class Board {
   width;
   height;
   stationary;
-  fallingBlock;
-  fallingBlockRow;
-  fallingBlockColumn;
+  fallingShape;
+  fallingShapeRow;
+  fallingShapeColumn;
 
   constructor(width, height) {
     this.width = width;
@@ -42,25 +42,25 @@ export class Board {
     if (!this.hasFalling()) {
       return EMPTY;
     }
-    if (row >= this.fallingBlockRow && 
-        row < this.fallingBlockRow + this.fallingBlock.height() &&
-        col >= this.fallingBlockColumn &&
-        col < this.fallingBlockColumn + this.fallingBlock.width()) {
-      return this.fallingBlock.blockAt(row - this.fallingBlockRow, col - this.fallingBlockColumn);
+    if (row >= this.fallingShapeRow && 
+        row < this.fallingShapeRow + this.fallingShape.height() &&
+        col >= this.fallingShapeColumn &&
+        col < this.fallingShapeColumn + this.fallingShape.width()) {
+      return this.fallingShape.blockAt(row - this.fallingShapeRow, col - this.fallingShapeColumn);
     } else {
       return EMPTY;
     }
   }
 
   hasFalling() {
-    return this.fallingBlock != null;
+    return this.fallingShape != null;
   }
 
-  drop(block) {
+  drop(shape) {
     if (this.hasFalling()) {
       throw "already falling";
     }
-    this.startFall(block);
+    this.startFall(shape);
   }
 
   tick() {
@@ -71,26 +71,26 @@ export class Board {
     }
   }
 
-  startFall(block) {
-    this.fallingBlock = block;
-    this.fallingBlockRow = 0;
-    this.fallingBlockColumn = Math.floor((this.width - block.width()) / 2);
+  startFall(shape) {
+    this.fallingShape = shape;
+    this.fallingShapeRow = 0;
+    this.fallingShapeColumn = Math.floor((this.width - shape.width()) / 2);
   }
 
   fallOneRow() {
-    this.fallingBlockRow++;
+    this.fallingShapeRow++;
   }
 
   fallingHitsStationary() {
-    return this.stationary[this.fallingBlockRow + 1][this.fallingBlockColumn] != EMPTY;
+    return this.stationary[this.fallingShapeRow + 1][this.fallingShapeColumn] != EMPTY;
   }
 
   fallingHitsFloor() {
-    return this.fallingBlockRow == this.height - 1;
+    return this.fallingShapeRow == this.height - 1;
   }
 
   stopFalling() {
-    this.stationary[this.fallingBlockRow][this.fallingBlockColumn] = this.fallingBlock.blockAt(0,0);
-    this.fallingBlock = null;
+    this.stationary[this.fallingShapeRow][this.fallingShapeColumn] = this.fallingShape.blockAt(0,0);
+    this.fallingShape = null;
   }
 }
