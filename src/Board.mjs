@@ -1,3 +1,5 @@
+const EMPTY = ".";
+
 export class Board {
   width;
   height;
@@ -13,7 +15,7 @@ export class Board {
   }
 
   emptyBoard(width, height) {
-    var board = Array(width).fill(null).map(() => Array(height).fill("."));
+    var board = Array(width).fill(null).map(() => Array(height).fill(EMPTY));
     return board;
   }
 
@@ -70,7 +72,7 @@ export class Board {
   }
 
   fallingHitsStationary() {
-    return this.stationary[this.fallingBlockRow + 1][this.fallingBlockColumn] != ".";
+    return this.stationary[this.fallingBlockRow + 1][this.fallingBlockColumn] != EMPTY;
   }
 
   fallingHitsFloor() {
