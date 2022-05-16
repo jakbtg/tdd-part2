@@ -3,16 +3,16 @@ import { shapeToString } from "./shape.mjs";
 const EMPTY = ".";
 
 export class Board {
-  width;
-  height;
+  boardWidth;
+  boardHeight;
   stationary;
   fallingShape;
   fallingShapeRow;
   fallingShapeColumn;
 
   constructor(width, height) {
-    this.width = width;
-    this.height = height;
+    this.boardWidth = width;
+    this.boardHeight = height;
     this.stationary = this.emptyBoard(height, width);
   }
 
@@ -21,24 +21,16 @@ export class Board {
     return board;
   }
 
-  height() {
-    return this.height;
+  width() {
+    return this.boardWidth;
   }
 
-  width() {
-    return this.width;
+  height() {
+    return this.boardHeight;
   }
 
   toString() {
-    // return shapeToString(this);
-    var s = "";
-    for (let i = 0; i < this.height; i++) {
-      for (let j = 0; j < this.width; j++) {
-        s += this.blockAt(i, j);
-      }
-      s += "\n";
-    }
-    return s;
+    return shapeToString(this);
   }
 
   blockAt(row, col) {
@@ -75,7 +67,7 @@ export class Board {
   startFall(shape) {
     this.fallingShape = shape;
     this.fallingShapeRow = 0;
-    this.fallingShapeColumn = Math.floor((this.width - shape.width()) / 2);
+    this.fallingShapeColumn = Math.floor((this.boardWidth - shape.width()) / 2);
   }
 
   fallOneRow() {
@@ -87,7 +79,7 @@ export class Board {
   }
 
   fallingHitsFloor() {
-    return this.fallingShapeRow == this.height - 1;
+    return this.fallingShapeRow == this.boardHeight - 1;
   }
 
   stopFalling() {
