@@ -131,7 +131,7 @@ export class Board {
       return;
     }
     const test = this.fallingShape.moveDown();
-    if (this.fallingHitsFloor(test) || this.fallingHitsStationary()) {
+    if (this.fallingHitsFloor(test) || this.fallingHitsStationary(test)) {
       this.stopFalling();
     } else {
       this.fallingShape = test;
@@ -145,8 +145,13 @@ export class Board {
     this.fallingShapeColumn = Math.floor((this.boardWidth - shape.width()) / 2);
   }
 
-  fallingHitsStationary() {
-    return this.stationary[this.fallingShapeRow + 1][this.fallingShapeColumn] != EMPTY;
+  fallingHitsStationary(shape) {
+    for (const point of shape.nonEmptyBlocks()) {
+      if (this.stationary[point.row][point.col] != EMPTY) {
+        return true;
+      }
+    }
+    return false;
   }
 
   fallingHitsFloor(shape) {
