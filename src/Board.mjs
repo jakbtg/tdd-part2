@@ -24,6 +24,19 @@ class MovableShape {
     this.shapeCol = col;
   }
 
+  nonEmptyBlocks() {
+    const points = [];
+    for (let row = this.shapeRow; row < this.shapeRow + this.movShape.height(); row++) {
+      for (let col = this.shapeCol; col < this.shapeCol + this.movShape.width(); col++) {
+        const block = this.blockAt(row, col);
+        if (block !== EMPTY) {
+          points.push(new Point(row, col));
+        }
+      }
+    }
+    return points;
+  }
+
   moveDown() {
     return new MovableShape(this.movShape, this.shapeRow + 1, this.shapeCol);
   }
@@ -117,10 +130,11 @@ export class Board {
     if (!this.hasFalling()) {
       return;
     }
-    if (this.fallingHitsFloor() || this.fallingHitsStationary()) {
+    const test = this.fallingShape.moveDown();
+    if (this.fallingHitsFloor(test) || this.fallingHitsStationary()) {
       this.stopFalling();
     } else {
-      this.fallingShape = this.fallingShape.moveDown();
+      this.fallingShape = test;
       this.fallingShapeRow++;
     }
   }
@@ -135,9 +149,13 @@ export class Board {
     return this.stationary[this.fallingShapeRow + 1][this.fallingShapeColumn] != EMPTY;
   }
 
-  fallingHitsFloor() {
-    // return this.fallingShapeRow + this.fallingShape.height() >= this.height();
-    return this.fallingShapeRow + 1 >= this.boardHeight;
+  fallingHitsFloor(shape) {
+    for (const point of shape.nonEmptyBlocks()) {
+      if (point.row >= this.boardHeight) {
+        return true;
+      }
+    }
+    return false;
   }
 
   stopFalling() {
