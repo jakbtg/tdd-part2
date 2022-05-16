@@ -11,18 +11,18 @@ export class Board {
   constructor(width, height) {
     this.width = width;
     this.height = height;
-    this.stationary = this.emptyBoard(width, height);
+    this.stationary = this.emptyBoard(height, width);
   }
 
-  emptyBoard(width, height) {
-    var board = Array(width).fill(null).map(() => Array(height).fill(EMPTY));
+  emptyBoard(height, width) {
+    var board = Array(height).fill(null).map(() => Array(width).fill(EMPTY));
     return board;
   }
 
   toString() {
     var s = "";
-    for (let i = 0; i < this.width; i++) {
-      for (let j = 0; j < this.height; j++) {
+    for (let i = 0; i < this.height; i++) {
+      for (let j = 0; j < this.width; j++) {
         s += this.getColorAt(i, j);
       }
       s += "\n";
@@ -42,9 +42,11 @@ export class Board {
     if (!this.hasFalling()) {
       return EMPTY;
     }
-    if (row == this.fallingBlockRow && col == this.fallingBlockColumn) {
-      //return this.fallingBlock.blockAt(row - this.fallingBlockRow, col - this.fallingBlockColumn);
-      return this.fallingBlock.blockAt(0, 0);
+    if (row >= this.fallingBlockRow && 
+        row < this.fallingBlockRow + this.fallingBlock.height() &&
+        col >= this.fallingBlockColumn &&
+        col < this.fallingBlockColumn + this.fallingBlock.width()) {
+      return this.fallingBlock.blockAt(row - this.fallingBlockRow, col - this.fallingBlockColumn);
     } else {
       return EMPTY;
     }
@@ -72,7 +74,7 @@ export class Board {
   startFall(block) {
     this.fallingBlock = block;
     this.fallingBlockRow = 0;
-    this.fallingBlockColumn = 1;
+    this.fallingBlockColumn = Math.floor((this.width - block.width()) / 2);
   }
 
   fallOneRow() {
