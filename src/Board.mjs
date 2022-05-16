@@ -39,13 +39,11 @@ export class Board {
   }
 
   fallingCellAt(row, col) {
-    if (!this.hasFalling()) {
-      return EMPTY;
-    }
-    if (row >= this.fallingShapeRow && 
-        row < this.fallingShapeRow + this.fallingShape.height() &&
-        col >= this.fallingShapeColumn &&
-        col < this.fallingShapeColumn + this.fallingShape.width()) {
+    if (this.hasFalling() &&
+      row >= this.fallingShapeRow &&
+      row < this.fallingShapeRow + this.fallingShape.height() &&
+      col >= this.fallingShapeColumn &&
+      col < this.fallingShapeColumn + this.fallingShape.width()) {
       return this.fallingShape.blockAt(row - this.fallingShapeRow, col - this.fallingShapeColumn);
     } else {
       return EMPTY;
@@ -90,7 +88,7 @@ export class Board {
   }
 
   stopFalling() {
-    this.stationary[this.fallingShapeRow][this.fallingShapeColumn] = this.fallingShape.blockAt(0,0);
+    this.stationary[this.fallingShapeRow][this.fallingShapeColumn] = this.fallingShape.blockAt(0, 0);
     this.fallingShape = null;
   }
 }
