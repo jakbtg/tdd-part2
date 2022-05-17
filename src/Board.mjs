@@ -149,19 +149,31 @@ export class Board {
     this.tryMove(this.fallingShape.moveRight());
   }
 
+  tryMove(test) {
+    if (!this.fallingHitsBoardLimits(test) && !this.fallingHitsStationary(test)) {
+      this.fallingShape = test;
+    }
+  }
+
   rotateRight() {
-    this.tryMove(this.fallingShape.rotateRight());
+    this.tryKick(this.fallingShape.rotateRight());
   }
 
   rotateLeft() {
     this.tryMove(this.fallingShape.rotateLeft());
   }
 
-  tryMove(test) {
+  tryKick(test) {
     if (!this.fallingHitsBoardLimits(test) && !this.fallingHitsStationary(test)) {
       this.fallingShape = test;
+    } else {
+      test = this.fallingShape.moveRight().rotateRight();
+      if (!this.fallingHitsBoardLimits(test) && !this.fallingHitsStationary(test)) {
+        this.fallingShape = test;
+      }
     }
   }
+
 
   fallingHitsStationary(shape) {
     for (const point of shape.nonEmptyBlocks()) {
