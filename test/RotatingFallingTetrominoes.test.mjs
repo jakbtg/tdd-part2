@@ -85,4 +85,16 @@ describe("Rotating falling tetrominoes when there is no space to rotate", () => 
         );
     });
 
+    it("cannot rotate left/counter-clockwise when there is no space to rotate", () => {
+        board.rotateLeft();
+        expect(board.toString()).to.equalShape(
+            `....I.....
+             ....I.....
+             ..OOI.....
+             ..OOI.....
+             OOOO......
+             OOOO......`
+        );
+    });
+
 });
