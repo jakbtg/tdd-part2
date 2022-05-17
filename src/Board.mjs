@@ -164,7 +164,7 @@ export class Board {
   }
 
   tryKick(test) {
-    var moves = [test, test.moveRight(), test.moveLeft()];
+    var moves = [test, test.moveRight(), test.moveLeft(), test.moveRight().moveRight()];
     for (const move of moves) {
       if (this.isAllowedMove(move)) {
         this.fallingShape = move;
