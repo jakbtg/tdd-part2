@@ -108,16 +108,26 @@ describe("Rotating falling tetrominoes when there is no space to rotate, because
     );
 
     it("cannot rotate because next to left wall", () => {
-        board.moveLeft();
-        board.moveLeft();
-        board.moveLeft();
-        board.moveLeft();
+        moveToSide(board, true);
         board.rotateRight();
         expect(board.toString()).to.equalShape(
             `I.........
              I.........
              I.........
              I.........
+             ..........
+             ..........`
+        );
+    });
+
+    it("cannot rotate because next to right wall", () => {
+        moveToSide(board, false);
+        board.rotateLeft();
+        expect(board.toString()).to.equalShape(
+            `.........I
+             .........I
+             .........I
+             .........I
              ..........
              ..........`
         );
