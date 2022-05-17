@@ -183,11 +183,10 @@ export class Board {
   }
 
   rotateRight() {
-    // const test = this.fallingShape.movShape.rotateRight();
-    // if (!this.fallingHitsBoardLimits(test) && !this.fallingHitsStationary(test)) {
-    //   this.fallingShape = new MovableShape(test, this.fallingShape.shapeRow, this.fallingShape.shapeCol);
-    // }
-    this.fallingShape = this.fallingShape.rotateRight();
+    const test = this.fallingShape.rotateRight();
+    if (!this.fallingHitsBoardLimits(test) && !this.fallingHitsStationary(test)) {
+      this.fallingShape = test;
+    }
   }
 
   rotateLeft() {
