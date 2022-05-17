@@ -113,20 +113,56 @@ export class Board {
     this.startFall(shape);
   }
 
+  startFall(shape) {
+    this.fallingShape = new MovableShape(shape, 0, Math.floor((this.boardWidth - shape.width()) / 2));
+  }
+
   tick() {
     if (!this.hasFalling()) {
       return;
     }
     const test = this.fallingShape.moveDown();
-    if (this.fallingHitsFloor(test) || this.fallingHitsStationary(test)) {
+    if (this.fallingHitsBoardLimits(test) || this.fallingHitsStationary(test)) {
       this.stopFalling();
     } else {
       this.fallingShape = test;
     }
   }
 
-  startFall(shape) {
-    this.fallingShape = new MovableShape(shape, 0, Math.floor((this.boardWidth - shape.width()) / 2));
+  moveLeft() {
+    if (!this.hasFalling()) {
+      return;
+    }
+    const test = this.fallingShape.moveLeft();
+    if (this.fallingHitsBoardLimits(test) || this.fallingHitsStationary(test)) {
+      this.stopFalling();
+    } else {
+      this.fallingShape = test;
+    }
+  }
+
+  moveRight() {
+    if (!this.hasFalling()) {
+      return;
+    }
+    const test = this.fallingShape.moveRight();
+    if (this.fallingHitsBoardLimits(test) || this.fallingHitsStationary(test)) {
+      this.stopFalling();
+    } else {
+      this.fallingShape = test;
+    }
+  }
+
+  moveDown() {
+    if (!this.hasFalling()) {
+      return;
+    }
+    const test = this.fallingShape.moveDown();
+    if (this.fallingHitsBoardLimits(test) || this.fallingHitsStationary(test)) {
+      this.stopFalling();
+    } else {
+      this.fallingShape = test;
+    }
   }
 
   fallingHitsStationary(shape) {
@@ -138,7 +174,7 @@ export class Board {
     return false;
   }
 
-  fallingHitsFloor(shape) {
+  fallingHitsBoardLimits(shape) {
     for (const point of shape.nonEmptyBlocks()) {
       if (point.row >= this.boardHeight) {
         return true;
@@ -154,41 +190,5 @@ export class Board {
       }
     }
     this.fallingShape = null;
-  }
-
-  moveLeft() {
-    if (!this.hasFalling()) {
-      return;
-    }
-    const test = this.fallingShape.moveLeft();
-    if (this.fallingHitsFloor(test) || this.fallingHitsStationary(test)) {
-      this.stopFalling();
-    } else {
-      this.fallingShape = test;
-    }
-  }
-
-  moveRight() {
-    if (!this.hasFalling()) {
-      return;
-    }
-    const test = this.fallingShape.moveRight();
-    if (this.fallingHitsFloor(test) || this.fallingHitsStationary(test)) {
-      this.stopFalling();
-    } else {
-      this.fallingShape = test;
-    }
-  }
-
-  moveDown() {
-    if (!this.hasFalling()) {
-      return;
-    }
-    const test = this.fallingShape.moveDown();
-    if (this.fallingHitsFloor(test) || this.fallingHitsStationary(test)) {
-      this.stopFalling();
-    } else {
-      this.fallingShape = test;
-    }
   }
 }
