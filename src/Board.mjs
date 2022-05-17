@@ -134,7 +134,7 @@ export class Board {
       return;
     }
     const test = this.fallingShape.moveLeft();
-    if (!this.fallingHitsBoardLimits(test) || !this.fallingHitsStationary(test)) {
+    if (!this.fallingHitsBoardLimits(test) && !this.fallingHitsStationary(test)) {
       this.fallingShape = test;
     }
   }
@@ -144,7 +144,7 @@ export class Board {
       return;
     }
     const test = this.fallingShape.moveRight();
-    if (!this.fallingHitsBoardLimits(test) || !this.fallingHitsStationary(test)) {
+    if (!this.fallingHitsBoardLimits(test) && !this.fallingHitsStationary(test)) {
       this.fallingShape = test;
     }
   }
