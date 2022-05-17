@@ -23,8 +23,7 @@ describe("Rotating falling tetrominoes", () => {
     beforeEach(() => {
         board = new Board(10, 6);
         board.drop(Tetromino.T_SHAPE);
-    }
-    );
+    });
 
     it("a falling tetromino can be rotated right/clockwise", () => {
         board.rotateRight();
@@ -70,8 +69,7 @@ describe("Rotating falling tetrominoes when there is no space to rotate, because
 
         board.drop(Tetromino.I_SHAPE);
         board.rotateRight();
-    }
-    );
+    });
 
     it("cannot rotate right/clockwise", () => {
         board.rotateRight();
@@ -104,8 +102,7 @@ describe("Rotating falling tetrominoes when there is no space to rotate, because
         board = new Board(10, 6);
         board.drop(Tetromino.I_SHAPE);
         board.rotateRight();
-    }
-    );
+    });
 
     it("cannot rotate because next to left wall", () => {
         moveToSide(board, true);
@@ -133,3 +130,25 @@ describe("Rotating falling tetrominoes when there is no space to rotate, because
         );
     });
 });
+
+describe("Wallkick", () => {
+    let board;
+    beforeEach(() => {
+        board = new Board(10, 6);
+        board.drop(Tetromino.I_SHAPE);
+        board.rotateRight();
+    });
+
+    it("wallkick when next to left wall", () => {
+        moveToSide(board, true);
+        board.rotateRight();
+        expect(board.toString()).to.equalShape(
+            `..........
+             ..........
+             IIII......
+             ..........
+             ..........
+             ..........`
+        );
+    });
+}); 
