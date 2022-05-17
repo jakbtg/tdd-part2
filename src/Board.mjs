@@ -37,6 +37,19 @@ class MovableShape {
     return points;
   }
 
+  blockAt(row, col) {
+    if (
+      row >= this.shapeRow &&
+      row < this.shapeRow + this.movShape.height() &&
+      col >= this.shapeCol &&
+      col < this.shapeCol + this.movShape.width()
+    ) {
+      return this.movShape.blockAt(row - this.shapeRow, col - this.shapeCol);
+    } else {
+      return EMPTY;
+    }
+  }
+
   moveDown() {
     return new MovableShape(this.movShape, this.shapeRow + 1, this.shapeCol);
   }
@@ -49,17 +62,8 @@ class MovableShape {
     return new MovableShape(this.movShape, this.shapeRow, this.shapeCol + 1);
   }
 
-  blockAt(row, col) {
-    if (
-      row >= this.shapeRow &&
-      row < this.shapeRow + this.movShape.height() &&
-      col >= this.shapeCol &&
-      col < this.shapeCol + this.movShape.width()
-    ) {
-      return this.movShape.blockAt(row - this.shapeRow, col - this.shapeCol);
-    } else {
-      return EMPTY;
-    }
+  rotateRight() {
+    return new MovableShape(this.movShape.rotateRight(), this.shapeRow, this.shapeCol);
   }
 }
 
@@ -172,5 +176,13 @@ export class Board {
       }
     }
     this.fallingShape = null;
+  }
+
+  rotateRight() {
+    // const test = this.fallingShape.movShape.rotateRight();
+    // if (!this.fallingHitsBoardLimits(test) && !this.fallingHitsStationary(test)) {
+    //   this.fallingShape = new MovableShape(test, this.fallingShape.shapeRow, this.fallingShape.shapeCol);
+    // }
+    this.fallingShape = this.fallingShape.rotateRight();
   }
 }
