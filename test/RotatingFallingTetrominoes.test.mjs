@@ -96,5 +96,30 @@ describe("Rotating falling tetrominoes when there is no space to rotate, because
              OOOO......`
         );
     });
+});
 
+describe("Rotating falling tetrominoes when there is no space to rotate, because of walls", () => {
+    let board;
+    beforeEach(() => {
+        board = new Board(10, 6);
+        board.drop(Tetromino.I_SHAPE);
+        board.rotateRight();
+    }
+    );
+
+    it("cannot rotate because next to left wall", () => {
+        board.moveLeft();
+        board.moveLeft();
+        board.moveLeft();
+        board.moveLeft();
+        board.rotateRight();
+        expect(board.toString()).to.equalShape(
+            `I.........
+             I.........
+             I.........
+             I.........
+             ..........
+             ..........`
+        );
+    });
 });
