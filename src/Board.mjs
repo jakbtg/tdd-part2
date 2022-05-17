@@ -41,6 +41,10 @@ class MovableShape {
     return new MovableShape(this.movShape, this.shapeRow + 1, this.shapeCol);
   }
 
+  moveLeft() {
+    return new MovableShape(this.movShape, this.shapeRow, this.shapeCol - 1);
+  }
+
   blockAt(row, col) {
     if (
       row >= this.shapeRow &&
@@ -146,5 +150,17 @@ export class Board {
       }
     }
     this.fallingShape = null;
+  }
+
+  moveLeft() {
+    if (!this.hasFalling()) {
+      return;
+    }
+    const test = this.fallingShape.moveLeft();
+    if (this.fallingHitsFloor(test) || this.fallingHitsStationary(test)) {
+      this.stopFalling();
+    } else {
+      this.fallingShape = test;
+    }
   }
 }
