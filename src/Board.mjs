@@ -179,4 +179,16 @@ export class Board {
       this.fallingShape = test;
     }
   }
+
+  moveDown() {
+    if (!this.hasFalling()) {
+      return;
+    }
+    const test = this.fallingShape.moveDown();
+    if (this.fallingHitsFloor(test) || this.fallingHitsStationary(test)) {
+      this.stopFalling();
+    } else {
+      this.fallingShape = test;
+    }
+  }
 }
