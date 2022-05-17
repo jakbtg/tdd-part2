@@ -190,6 +190,9 @@ export class Board {
   }
 
   rotateLeft() {
-    this.fallingShape = this.fallingShape.rotateLeft();
+    const test = this.fallingShape.rotateLeft();
+    if (!this.fallingHitsBoardLimits(test) && !this.fallingHitsStationary(test)) {
+      this.fallingShape = test;
+    }
   }
 }
