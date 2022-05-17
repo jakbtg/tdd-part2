@@ -134,9 +134,7 @@ export class Board {
       return;
     }
     const test = this.fallingShape.moveLeft();
-    if (this.fallingHitsBoardLimits(test) || this.fallingHitsStationary(test)) {
-      this.stopFalling();
-    } else {
+    if (!this.fallingHitsBoardLimits(test) || !this.fallingHitsStationary(test)) {
       this.fallingShape = test;
     }
   }
@@ -146,9 +144,7 @@ export class Board {
       return;
     }
     const test = this.fallingShape.moveRight();
-    if (this.fallingHitsBoardLimits(test) || this.fallingHitsStationary(test)) {
-      this.stopFalling();
-    } else {
+    if (!this.fallingHitsBoardLimits(test) || !this.fallingHitsStationary(test)) {
       this.fallingShape = test;
     }
   }
@@ -176,7 +172,7 @@ export class Board {
 
   fallingHitsBoardLimits(shape) {
     for (const point of shape.nonEmptyBlocks()) {
-      if (point.row >= this.boardHeight) {
+      if (point.row >= this.boardHeight || point.col >= this.boardWidth || point.col < 0) {
         return true;
       }
     }
