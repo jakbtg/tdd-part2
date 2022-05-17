@@ -142,14 +142,22 @@ export class Board {
   }
 
   moveLeft() {
-    const test = this.fallingShape.moveLeft();
-    if (!this.fallingHitsBoardLimits(test) && !this.fallingHitsStationary(test)) {
-      this.fallingShape = test;
-    }
+    this.tryMove(this.fallingShape.moveLeft());
   }
 
   moveRight() {
-    const test = this.fallingShape.moveRight();
+    this.tryMove(this.fallingShape.moveRight());
+  }
+
+  rotateRight() {
+    this.tryMove(this.fallingShape.rotateRight());
+  }
+
+  rotateLeft() {
+    this.tryMove(this.fallingShape.rotateLeft());
+  }
+
+  tryMove(test) {
     if (!this.fallingHitsBoardLimits(test) && !this.fallingHitsStationary(test)) {
       this.fallingShape = test;
     }
@@ -180,19 +188,5 @@ export class Board {
       }
     }
     this.fallingShape = null;
-  }
-
-  rotateRight() {
-    const test = this.fallingShape.rotateRight();
-    if (!this.fallingHitsBoardLimits(test) && !this.fallingHitsStationary(test)) {
-      this.fallingShape = test;
-    }
-  }
-
-  rotateLeft() {
-    const test = this.fallingShape.rotateLeft();
-    if (!this.fallingHitsBoardLimits(test) && !this.fallingHitsStationary(test)) {
-      this.fallingShape = test;
-    }
   }
 }
