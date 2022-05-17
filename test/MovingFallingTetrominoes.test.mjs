@@ -97,6 +97,26 @@ describe("Moving falling tetrominoes", () => {
              ...TTT....`
         );
     });
+
+    it("it cannot be moved left through other blocks", () => {
+        moveToSide(board, true);
+        fallToBottom(board);
+        board.drop(Tetromino.T_SHAPE);
+        moveToSide(board, true);
+        fallToBottom(board);
+        board.drop(Tetromino.T_SHAPE);
+        board.moveDown();
+        moveToSide(board, true);
+        expect(board.toString()).to.equalShape(
+            `..........
+             ...T......
+             .TTTT.....
+             TTT.......
+             .T........
+             TTT.......`
+        );
+    });
+
 });
 
 
