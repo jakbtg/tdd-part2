@@ -160,17 +160,16 @@ export class Board {
   }
 
   rotateLeft() {
-    this.tryMove(this.fallingShape.rotateLeft());
+    this.tryKick(this.fallingShape.rotateLeft());
   }
 
   tryKick(test) {
     if (this.isAllowedMove(test)) {
       this.fallingShape = test;
-    } else {
-      test = test.moveRight()
-      if (this.isAllowedMove(test)) {
-        this.fallingShape = test;
-      }
+    } else if (this.isAllowedMove(test.moveRight())) {
+        this.fallingShape = test.moveRight();
+      } else if (this.isAllowedMove(test.moveLeft())) {
+        this.fallingShape = test.moveLeft();
     }
   }
 
