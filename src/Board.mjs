@@ -45,6 +45,10 @@ class MovableShape {
     return new MovableShape(this.movShape, this.shapeRow, this.shapeCol - 1);
   }
 
+  moveRight() {
+    return new MovableShape(this.movShape, this.shapeRow, this.shapeCol + 1);
+  }
+
   blockAt(row, col) {
     if (
       row >= this.shapeRow &&
@@ -157,6 +161,18 @@ export class Board {
       return;
     }
     const test = this.fallingShape.moveLeft();
+    if (this.fallingHitsFloor(test) || this.fallingHitsStationary(test)) {
+      this.stopFalling();
+    } else {
+      this.fallingShape = test;
+    }
+  }
+
+  moveRight() {
+    if (!this.hasFalling()) {
+      return;
+    }
+    const test = this.fallingShape.moveRight();
     if (this.fallingHitsFloor(test) || this.fallingHitsStationary(test)) {
       this.stopFalling();
     } else {
