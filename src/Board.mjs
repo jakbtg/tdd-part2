@@ -134,10 +134,10 @@ export class Board {
       return;
     }
     const test = this.fallingShape.moveDown();
-    if (this.fallingHitsBoardLimits(test) || this.fallingHitsStationary(test)) {
-      this.stopFalling();
-    } else {
+    if (this.isAllowedMove(test)) {
       this.fallingShape = test;
+    } else {
+      this.stopFalling();
     }
   }
 
@@ -150,7 +150,7 @@ export class Board {
   }
 
   tryMove(test) {
-    if (!this.fallingHitsBoardLimits(test) && !this.fallingHitsStationary(test)) {
+    if (this.isAllowedMove(test)) {
       this.fallingShape = test;
     }
   }
@@ -164,15 +164,19 @@ export class Board {
   }
 
   tryKick(test) {
-    if (!this.fallingHitsBoardLimits(test) && !this.fallingHitsStationary(test)) {
+    if (this.isAllowedMove(test)) {
       this.fallingShape = test;
     } else {
-      test = this.fallingShape.moveRight().rotateRight();
-      if (!this.fallingHitsBoardLimits(test) && !this.fallingHitsStationary(test)) {
+      test = test.moveRight()
+      if (this.isAllowedMove(test)) {
         this.fallingShape = test;
       }
     }
   }
+
+  isAllowedMove(test) {
+    return !this.fallingHitsBoardLimits(test) && !this.fallingHitsStationary(test);
+  } 
 
 
   fallingHitsStationary(shape) {
