@@ -160,4 +160,17 @@ describe("Wallkick", () => {
              ..........`
         );
     });
+
+    it("wallkick when next to right wall", () => {
+        moveToSide(board, false);
+        board.rotateLeft();
+        expect(board.toString()).to.equalShape(
+            `..........
+             ..........
+             ......IIII
+             ..........
+             ..........
+             ..........`
+        );
+    });
 }); 
