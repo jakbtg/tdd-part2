@@ -52,7 +52,7 @@ describe("Rotating falling tetrominoes", () => {
 
 });
 
-describe("Rotating falling tetrominoes when there is no space to rotate", () => {
+describe("Rotating falling tetrominoes when there is no space to rotate, because of other blocks", () => {
     let board;
     beforeEach(() => {
         board = new Board(10, 6);
@@ -73,7 +73,7 @@ describe("Rotating falling tetrominoes when there is no space to rotate", () => 
     }
     );
 
-    it("cannot rotate right/clockwise when there is no space to rotate", () => {
+    it("cannot rotate right/clockwise", () => {
         board.rotateRight();
         expect(board.toString()).to.equalShape(
             `....I.....
@@ -85,7 +85,7 @@ describe("Rotating falling tetrominoes when there is no space to rotate", () => 
         );
     });
 
-    it("cannot rotate left/counter-clockwise when there is no space to rotate", () => {
+    it("cannot rotate left/counter-clockwise", () => {
         board.rotateLeft();
         expect(board.toString()).to.equalShape(
             `....I.....
