@@ -147,7 +147,7 @@ describe("Wallkick", () => {
         board.rotateRight();
     });
 
-    it("wallkick when next to left wall", () => {
+    it("one step when next to left wall", () => {
         moveToSide(board, true);
         board.moveRight();
         board.rotateRight();
@@ -161,13 +161,26 @@ describe("Wallkick", () => {
         );
     });
 
-    it("wallkick when next to right wall", () => {
+    it("one step when next to right wall", () => {
         moveToSide(board, false);
         board.rotateLeft();
         expect(board.toString()).to.equalShape(
             `..........
              ..........
              ......IIII
+             ..........
+             ..........
+             ..........`
+        );
+    });
+
+    it("two steps when next to left wall", () => {
+        moveToSide(board, true);
+        board.rotateRight();
+        expect(board.toString()).to.equalShape(
+            `..........
+             ..........
+             IIII......
              ..........
              ..........
              ..........`
