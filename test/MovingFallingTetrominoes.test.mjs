@@ -67,6 +67,18 @@ describe("Moving falling tetrominoes", () => {
              ..........`
         );
     });
+
+    it("it cannot be moved right beyond the board", () => {
+        moveToSide(board, false);
+        expect(board.toString()).to.equalShape(
+            `........T.
+             .......TTT
+             ..........
+             ..........
+             ..........
+             ..........`
+        );
+    });
 });
 
 
