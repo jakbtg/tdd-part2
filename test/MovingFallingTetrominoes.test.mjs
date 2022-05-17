@@ -4,13 +4,19 @@ import { Tetromino } from "../src/Tetromino.mjs";
 
 function moveToSide(board, left) {
     for (let i = 0; i < 10; i++) {
-      if (left) {
-        board.moveLeft();
-      } else {
-        board.moveRight();
-      }
+        if (left) {
+            board.moveLeft();
+        } else {
+            board.moveRight();
+        }
     }
-  }
+}
+
+function fallToBottom(board) {
+    for (let i = 0; i < 10; i++) {
+        board.tick();
+    }
+}
 
 describe("Moving falling tetrominoes", () => {
     let board;
@@ -77,6 +83,18 @@ describe("Moving falling tetrominoes", () => {
              ..........
              ..........
              ..........`
+        );
+    });
+
+    it("it cannot be moved down beyond the board (will stop falling)", () => {
+        fallToBottom(board);
+        expect(board.toString()).to.equalShape(
+            `..........
+             ..........
+             ..........
+             ..........
+             ....T.....
+             ...TTT....`
         );
     });
 });
