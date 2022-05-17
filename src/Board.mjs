@@ -164,12 +164,12 @@ export class Board {
   }
 
   tryKick(test) {
-    if (this.isAllowedMove(test)) {
-      this.fallingShape = test;
-    } else if (this.isAllowedMove(test.moveRight())) {
-        this.fallingShape = test.moveRight();
-      } else if (this.isAllowedMove(test.moveLeft())) {
-        this.fallingShape = test.moveLeft();
+    var moves = [test, test.moveRight(), test.moveLeft()];
+    for (const move of moves) {
+      if (this.isAllowedMove(move)) {
+        this.fallingShape = move;
+        return;
+      }
     }
   }
 
