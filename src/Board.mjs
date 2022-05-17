@@ -65,6 +65,10 @@ class MovableShape {
   rotateRight() {
     return new MovableShape(this.movShape.rotateRight(), this.shapeRow, this.shapeCol);
   }
+
+  rotateLeft() {
+    return new MovableShape(this.movShape.rotateLeft(), this.shapeRow, this.shapeCol);
+  }
 }
 
 export class Board {
@@ -184,5 +188,9 @@ export class Board {
     //   this.fallingShape = new MovableShape(test, this.fallingShape.shapeRow, this.fallingShape.shapeCol);
     // }
     this.fallingShape = this.fallingShape.rotateRight();
+  }
+
+  rotateLeft() {
+    this.fallingShape = this.fallingShape.rotateLeft();
   }
 }
