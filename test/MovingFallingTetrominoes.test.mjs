@@ -2,6 +2,16 @@ import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
 import { Tetromino } from "../src/Tetromino.mjs";
 
+function moveToSide(board, left) {
+    for (let i = 0; i < 10; i++) {
+      if (left) {
+        board.moveLeft();
+      } else {
+        board.moveRight();
+      }
+    }
+  }
+
 describe("Moving falling tetrominoes", () => {
     let board;
     beforeEach(() => {
@@ -40,6 +50,18 @@ describe("Moving falling tetrominoes", () => {
             `..........
              ....T.....
              ...TTT....
+             ..........
+             ..........
+             ..........`
+        );
+    });
+
+    it("it cannot be moved left beyond the board", () => {
+        moveToSide(board, true);
+        expect(board.toString()).to.equalShape(
+            `.T........
+             TTT.......
+             ..........
              ..........
              ..........
              ..........`
