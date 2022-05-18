@@ -21,7 +21,6 @@ describe("Rotating shape NEW", () => {
     });
 
     it("can be rotated right/clockwise", () => {
-        // shape.rotateRight();
         expect(shape.rotateRight().toString()).to.equalShape(
             `.T.
              .TT
@@ -30,7 +29,6 @@ describe("Rotating shape NEW", () => {
     });
 
     it("can be rotated left/counterclockwise", () => {
-        // shape.rotateLeft();
         expect(shape.rotateLeft().toString()).to.equalShape(
             `.T.
              TT.
