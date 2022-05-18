@@ -49,4 +49,16 @@ describe("Rotating shape NEW", () => {
              ...`
         );
     });
+
+    it("can loop around left/counterclockwise", () => {
+        shape.rotateLeft();
+        shape.rotateLeft();
+        shape.rotateLeft();
+        shape.rotateLeft();
+        expect(shape.toString()).to.equalShape(
+            `.T.
+             TTT
+             ...`
+        );
+    });
 });
