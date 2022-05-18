@@ -4,20 +4,22 @@ export class RotatingShapeNew {
     orientations = [];
     currentOrientation;
 
-    constructor(orientations) {
-        for (let i = 0; i < orientations.length; i++) {
-            var rows = (orientations[i].replaceAll(" ", "").trim() + "\n").trim().split("\n");
-            var shape = [];
-            for (let j = 0; j < rows.length; j++) {
-                shape[j] = rows[j];
-            }
-            this.orientations[i] = shape;
-        }
-        this.currentOrientation = 0;
+    constructor(orientations, currentOrientation) {
+        // for (let i = 0; i < orientations.length; i++) {
+        //     var rows = (orientations[i].replaceAll(" ", "").trim() + "\n").trim().split("\n");
+        //     var shape = [];
+        //     for (let j = 0; j < rows.length; j++) {
+        //         shape[j] = rows[j];
+        //     }
+        //     this.orientations[i] = shape;
+        // }
+        this.orientations = orientations;
+        this.currentOrientation = currentOrientation;
+        console.log(this.orientations.length);
     }
 
     toString() {
-        return shapeToString(this);
+        return this.orientations[this.currentOrientation];
     }
 
     height() {
@@ -30,5 +32,11 @@ export class RotatingShapeNew {
 
     blockAt(row, col) {
         return this.orientations[this.currentOrientation][row][col];
+    }
+
+    rotateRight() {
+        // this.currentOrientation = (this.currentOrientation + 1) % this.orientations.length;
+        // console.log(this.orientations);
+        return new RotatingShapeNew(this.orientations, this.currentOrientation + 1);
     }
 }

@@ -6,7 +6,7 @@ describe("Rotating shape NEW", () => {
         `.T.\nTTT\n...\n`,
         `.T.\n.TT\n.T.\n`,
         `...\nTTT\n.T.\n`,
-        `.T.\nTT.\n.T.\n`]);
+        `.T.\nTT.\n.T.\n`], 0);
 
     it("initial orientation", () => {
         expect(shape.toString()).to.equalShape(
@@ -17,7 +17,7 @@ describe("Rotating shape NEW", () => {
     });
 
     it("can be rotated right/clockwise", () => {
-        shape = shape.rotateRight();
+        shape.rotateRight();
         expect(shape.rotateRight().toString()).to.equalShape(
             `.T.
              .TT
