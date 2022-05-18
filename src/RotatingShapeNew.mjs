@@ -16,6 +16,7 @@ export class RotatingShapeNew {
         this.orientations = orientations;
         this.currentOrientation = currentOrientation;
         // console.log(this.orientations.length);
+        Object.freeze(this);
     }
 
     toString() {
