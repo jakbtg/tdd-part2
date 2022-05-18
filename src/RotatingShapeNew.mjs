@@ -15,7 +15,6 @@ export class RotatingShapeNew {
         // }
         this.orientations = orientations;
         this.currentOrientation = currentOrientation;
-        // console.log(this.orientations.length);
         Object.freeze(this);
     }
 
@@ -36,15 +35,10 @@ export class RotatingShapeNew {
     }
 
     rotateRight() {
-        // this.currentOrientation = (this.currentOrientation + 1) % this.orientations.length;
-        // console.log(this.currentOrientation);
         return new RotatingShapeNew(this.orientations, (this.currentOrientation + 1) % this.orientations.length);
     }
 
     rotateLeft() {
-        // console.log(this.currentOrientation);
-        // this.currentOrientation = (this.currentOrientation + this.orientations.length - 1) % this.orientations.length;
-        // console.log(this.currentOrientation);
         return new RotatingShapeNew(this.orientations, (this.currentOrientation + this.orientations.length - 1) % this.orientations.length);
     }
 }
