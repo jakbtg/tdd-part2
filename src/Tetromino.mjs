@@ -1,4 +1,5 @@
 import { RotatingShape } from "../src/RotatingShape.mjs";
+import { RotatingShapeNew } from "./RotatingShapeNew.mjs";
 import { shapeToString } from "./shape.mjs";
 
 export class Tetromino {
@@ -9,6 +10,92 @@ export class Tetromino {
     static J_SHAPE = new Tetromino(`...\nJJJ\n..J\n`, 0, 4);
     static S_SHAPE = new Tetromino(`...\n.SS\nSS.\n`, 0, 2);
     static Z_SHAPE = new Tetromino(`...\nZZ.\n.ZZ\n`, 0, 2);
+
+    static T_SHAPE_NEW = new RotatingShapeNew(
+        ["" +
+        "....\n" +
+        "TTT.\n" +
+        ".T..\n",
+        "" +
+        ".T..\n" +
+        "TT..\n" +
+        ".T..\n",
+        "" +
+        "....\n" +
+        ".T..\n" +
+        "TTT.\n",
+        "" +
+        ".T..\n" +
+        ".TT.\n" +
+        ".T..\n"], 0);
+    static L_SHAPE_NEW = new RotatingShapeNew(
+        ["" +
+        "....\n" +
+        "LLL.\n" +
+        "L...\n",
+        "" +
+        "LL..\n" +
+        ".L..\n" +
+        ".L..\n",
+        "" +
+        "....\n" +
+        "..L.\n" +
+        "LLL.\n",
+        "" +
+        ".L..\n" +
+        ".L..\n" +
+        ".LL.\n"], 0);
+    static J_SHAPE_NEW = new RotatingShapeNew(
+        ["" +
+        "....\n" +
+        ".JJJ\n" +
+        "...J\n",
+        "" +
+        ".J..\n" +
+        ".J..\n" +
+        "JJ..\n",
+        "" +
+        "....\n" +
+        ".J..\n" +
+        ".JJJ\n",
+        "" +
+        ".JJ.\n" +
+        ".J..\n" +
+        ".J..\n"], 0);
+    static I_SHAPE_NEW = new RotatingShapeNew(
+        ["" +
+        "....\n" +
+        "IIII\n" +
+        "....\n" +
+        "....\n",
+        "" +
+        "..I.\n" +
+        "..I.\n" +
+        "..I.\n" +
+        "..I.\n"], 0);
+    static S_SHAPE_NEW = new RotatingShapeNew(
+        ["" +
+        "....\n" +
+        ".SS.\n" +
+        "SS..\n",
+        "" +
+        "S...\n" +
+        "SS..\n" +
+        ".S..\n"], 0);
+    static Z_SHAPE_NEW = new RotatingShapeNew(
+        ["" +
+        "....\n" +
+        "ZZ..\n" +
+        ".ZZ.\n",
+        "" +
+        "..Z.\n" +
+        ".ZZ.\n" +
+        ".Z..\n"], 0);
+    static O_SHAPE_NEW = new RotatingShapeNew(
+        ["" +
+        ".OO.\n" +
+        ".OO.\n"], 0);
+
     orientations;
     currentOrientation;
 
@@ -19,7 +106,7 @@ export class Tetromino {
         } else {
             var shape = new RotatingShape(shape);
             this.currentOrientation = currentOrientation;
-            this.orientations = [shape, shape.rotateRight(), shape.rotateRight().rotateRight(), 
+            this.orientations = [shape, shape.rotateRight(), shape.rotateRight().rotateRight(),
                 shape.rotateLeft()].slice(0, orientations);
         }
         Object.freeze(this);
