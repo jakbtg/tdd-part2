@@ -24,4 +24,13 @@ describe("Rotating shape NEW", () => {
              .T.`
         );
     });
+
+    it("can be rotated left/counterclockwise", () => {
+        shape.rotateLeft();
+        expect(shape.toString()).to.equalShape(
+            `.T.
+             TT.
+             .T.`
+        );
+    });
 });
