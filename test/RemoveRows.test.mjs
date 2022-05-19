@@ -4,18 +4,29 @@ import { RotatingShape } from "../src/RotatingShape.mjs";
 import { fallToBottom } from "./UtilityFunctions.mjs";
 import { moveToSide } from "./UtilityFunctions.mjs";
 
+function dropTwoShapesAtSides(board, shape) {
+    board.drop(shape);
+    moveToSide(board, true);
+    fallToBottom(board);
+    board.drop(shape);
+    moveToSide(board, false);
+    fallToBottom(board);
+}
+
 describe("Remove full rows from the board", () => {
     let board = new Board(10, 6);
     let shape = new RotatingShape(['....\n....\nIIII\n....\n....\n'], 0);
     let otherShape = new RotatingShape([`.OO\n.OO\n...\n`], 0);
 
-    it("can remove one full row", () => {
-        board.drop(shape);
-        moveToSide(board, true);
-        fallToBottom(board);
-        board.drop(shape);
-        moveToSide(board, false);
-        fallToBottom(board);
+    beforeEach(() => {
+        dropTwoShapesAtSides(board, shape);
+    });
+
+    afterEach(() => {
+        board = new Board(10, 6);
+    });
+
+    it("can remove one row", () => {
         board.drop(otherShape);
         fallToBottom(board);
 
@@ -27,6 +38,21 @@ describe("Remove full rows from the board", () => {
              ..........
              ....OO....`
         );
+    });
 
+    it("can remove more rows", () => {
+        dropTwoShapesAtSides(board, shape);
+
+        board.drop(otherShape);
+        fallToBottom(board);
+
+        expect(board.toString()).to.equalShape(
+            `..........
+             ..........
+             ..........
+             ..........
+             ..........
+             ..........`
+        );
     });
 });
