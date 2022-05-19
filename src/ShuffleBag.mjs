@@ -11,4 +11,8 @@ export class ShuffleBag {
         return new RotatingShape(["."], 0);
     }
 
+    getLength() {
+        return this.bag.length;
+    }
+
 }
