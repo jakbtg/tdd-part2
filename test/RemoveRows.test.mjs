@@ -1,22 +1,8 @@
 import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
 import { RotatingShape } from "../src/RotatingShape.mjs";
-
-function fallToBottom(board) {
-    for (let i = 0; i < 10; i++) {
-      board.tick();
-    }
-}
-
-function moveToSide(board, left) {
-    for (let i = 0; i < 10; i++) {
-        if (left) {
-            board.moveLeft();
-        } else {
-            board.moveRight();
-        }
-    }
-}
+import { fallToBottom } from "./UtilityFunctions.mjs";
+import { moveToSide } from "./UtilityFunctions.mjs";
 
 describe("Remove full rows from the board", () => {
     let board = new Board(10, 6);

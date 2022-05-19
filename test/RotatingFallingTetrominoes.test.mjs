@@ -1,22 +1,8 @@
 import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
 import { RotatingShape } from "../src/RotatingShape.mjs";
-
-function moveToSide(board, left) {
-    for (let i = 0; i < 10; i++) {
-        if (left) {
-            board.moveLeft();
-        } else {
-            board.moveRight();
-        }
-    }
-}
-
-function fallToBottom(board) {
-    for (let i = 0; i < 10; i++) {
-        board.tick();
-    }
-}
+import { moveToSide } from "./UtilityFunctions.mjs";
+import { fallToBottom } from "./UtilityFunctions.mjs";
 
 describe("Rotating falling tetrominoes", () => {
     let board;
