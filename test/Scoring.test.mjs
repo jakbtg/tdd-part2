@@ -44,4 +44,10 @@ describe("Scoring system", () => {
         fallToBottom(board);
         expect(board.getScore()).to.equal(300);
     });
+
+    it("points for four rows removed", () => {
+        board.drop(four);
+        fallToBottom(board);
+        expect(board.getScore()).to.equal(1200);
+    });
 });
