@@ -202,6 +202,41 @@ export class Board {
         this.stationary[row][col] = this.blockAt(row, col);
       }
     }
+    this.removeRows();
     this.fallingShape = null;
+  }
+
+  removeRows() {
+    for (let row = 0; row < this.height(); row++) {
+      if (this.isRowFull(row)) {
+        this.removeRowAt(row);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  isRowFull(row) {
+    for (let col = 0; col < this.width(); col++) {
+      if (this.stationary[row][col] == EMPTY) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  removeRowAt(row) {
+    for (let col = 0; col < this.width(); col++) {
+      this.stationary[row][col] = EMPTY;
+    }
+    this.moveRowsDown(row);
+  }
+
+  moveRowsDown(row) {
+    for (let i = row; i > 0; i--) {
+      for (let col = 0; col < this.width(); col++) {
+        this.stationary[i][col] = this.stationary[i - 1][col];
+      }
+    }
   }
 }
