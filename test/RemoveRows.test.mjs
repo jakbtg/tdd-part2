@@ -55,4 +55,25 @@ describe("Remove full rows from the board", () => {
              ..........`
         );
     });
+
+    it("does not remove rows with empty values", () => {
+        let point = new RotatingShape([`.P.\n`], 0);
+        board.drop(point);
+        fallToBottom(board);
+        dropTwoShapesAtSides(board, shape);
+        let corner = new RotatingShape([`.L\nLL\n`], 0);
+        board.drop(corner);
+        fallToBottom(board);
+        dropTwoShapesAtSides(board, shape);
+
+        expect(board.toString()).to.equalShape(
+            `..........
+             ..........
+             ..........
+             ..........
+             IIII.LIIII
+             IIIIP.IIII`
+        );
+
+    });
 });
