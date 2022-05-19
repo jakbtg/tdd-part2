@@ -35,24 +35,9 @@ export class RotatingShapeNew {
     currentShape;
 
     constructor(orientations, currentOrientation) {
-        // for (let i = 0; i < orientations.length; i++) {
-        //     var rows = (orientations[i].replaceAll(" ", "").trim() + "\n").trim().split("\n");
-        //     var shape = [];
-        //     for (let j = 0; j < rows.length; j++) {
-        //         shape[j] = rows[j];
-        //     }
-        //     this.orientations[i] = shape;
-        // }
         this.orientations = orientations;
         this.currentOrientation = currentOrientation;
         this.currentShape = new CurrentShape(this.orientations[this.currentOrientation]);
-        // console.log(this.currentShape);
-        // var rows = (this.currentShape.replaceAll(" ", "").trim() + "\n").trim().split("\n");
-        // this.currentShape = [];
-        // for (let i = 0; i < rows.length; i++) {
-        //     this.currentShape[i] = rows[i];
-        // }
-        // console.log(this.currentShape);
         Object.freeze(this);
     }
 
