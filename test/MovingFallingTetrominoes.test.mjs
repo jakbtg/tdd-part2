@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
-import { Tetromino } from "../src/Tetromino.mjs";
+import { RotatingShapeNew } from "../src/RotatingShapeNew.mjs";
 
 function moveToSide(board, left) {
     for (let i = 0; i < 10; i++) {
@@ -26,9 +26,10 @@ function moveToBottom(board) {
 
 describe("Moving falling tetrominoes", () => {
     let board;
+    let shape = new RotatingShapeNew([`.T.\nTTT\n...\n`], 0);
     beforeEach(() => {
         board = new Board(10, 6);
-        board.drop(Tetromino.T_SHAPE);
+        board.drop(shape);
     }
     );
 
@@ -107,10 +108,10 @@ describe("Moving falling tetrominoes", () => {
     it("it cannot be moved left through other blocks", () => {
         moveToSide(board, true);
         fallToBottom(board);
-        board.drop(Tetromino.T_SHAPE);
+        board.drop(shape);
         moveToSide(board, true);
         fallToBottom(board);
-        board.drop(Tetromino.T_SHAPE);
+        board.drop(shape);
         board.moveDown();
         moveToSide(board, true);
         expect(board.toString()).to.equalShape(
@@ -126,10 +127,10 @@ describe("Moving falling tetrominoes", () => {
     it("it cannot be moved right through other blocks", () => {
         moveToSide(board, false);
         fallToBottom(board);
-        board.drop(Tetromino.T_SHAPE);
+        board.drop(shape);
         moveToSide(board, false);
         fallToBottom(board);
-        board.drop(Tetromino.T_SHAPE);
+        board.drop(shape);
         board.moveDown();
         moveToSide(board, false);
         expect(board.toString()).to.equalShape(
@@ -144,7 +145,7 @@ describe("Moving falling tetrominoes", () => {
 
     it("it cannot be moved down through other blocks (will stop falling)", () => {
         fallToBottom(board);
-        board.drop(Tetromino.T_SHAPE);
+        board.drop(shape);
         moveToBottom(board);
         expect(board.toString()).to.equalShape(
             `..........

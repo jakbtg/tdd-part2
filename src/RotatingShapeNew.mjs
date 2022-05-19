@@ -42,7 +42,6 @@ export class RotatingShapeNew {
     }
 
     toString() {
-        console.log(this.currentShape.toString());
         return this.currentShape.toString();
     }
 

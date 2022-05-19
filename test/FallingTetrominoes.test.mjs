@@ -44,7 +44,7 @@ describe("Falling tetrominoes", () => {
 
   it("stop when they land on another block", () => {
     fallToBottom(board);
-    board.drop(new RotatingShapeNew([`.T.\nTTT\n...\n`], 0));
+    board.drop(shape);
     fallToBottom(board);
 
     expect(board.toString()).to.equalShape(
