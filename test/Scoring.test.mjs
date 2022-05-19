@@ -1,6 +1,7 @@
 import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
 import { RotatingShape } from "../src/RotatingShape.mjs";
+import { ScoringSystem } from "../src/ScoringSystem.mjs";
 import { fallToBottom } from "./UtilityFunctions.mjs";
 import { moveToSide } from "./UtilityFunctions.mjs";
 
@@ -24,7 +25,7 @@ describe("Scoring system", () => {
     });
 
     it("points for one row removed", () => {
-        expect(score.getScore()).to.equal(40);
+        expect(score.score).to.equal(40);
     });
 
 });
