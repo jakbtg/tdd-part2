@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import { RotatingShape } from "../src/RotatingShape.mjs";
 
-describe("Rotating shape NEW", () => {
+describe("Rotating shape", () => {
     let shape;
     beforeEach(() => {
         shape = new RotatingShape([
