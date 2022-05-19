@@ -29,7 +29,7 @@ class CurrentShape {
     }
 }
 
-export class RotatingShapeNew {
+export class RotatingShape {
     orientations = [];
     currentOrientation;
     currentShape;
@@ -58,10 +58,10 @@ export class RotatingShapeNew {
     }
 
     rotateRight() {
-        return new RotatingShapeNew(this.orientations, (this.currentOrientation + 1) % this.orientations.length);
+        return new RotatingShape(this.orientations, (this.currentOrientation + 1) % this.orientations.length);
     }
 
     rotateLeft() {
-        return new RotatingShapeNew(this.orientations, (this.currentOrientation + this.orientations.length - 1) % this.orientations.length);
+        return new RotatingShape(this.orientations, (this.currentOrientation + this.orientations.length - 1) % this.orientations.length);
     }
 }

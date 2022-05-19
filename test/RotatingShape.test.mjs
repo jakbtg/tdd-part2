@@ -1,10 +1,10 @@
 import { expect } from "chai";
-import { RotatingShapeNew } from "../src/RotatingShapeNew.mjs";
+import { RotatingShape } from "../src/RotatingShape.mjs";
 
 describe("Rotating shape NEW", () => {
     let shape;
     beforeEach(() => {
-        shape = new RotatingShapeNew([
+        shape = new RotatingShape([
             `.T.\nTTT\n...\n`,
             `.T.\n.TT\n.T.\n`,
             `...\nTTT\n.T.\n`,

@@ -1,7 +1,7 @@
 
 import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
-import { RotatingShapeNew } from "../src/RotatingShapeNew.mjs";
+import { RotatingShape } from "../src/RotatingShape.mjs";
 
 function fallToBottom(board) {
   for (let i = 0; i < 10; i++) {
@@ -11,7 +11,7 @@ function fallToBottom(board) {
 
 describe("Falling tetrominoes", () => {
   let board;
-  let shape = new RotatingShapeNew([`.T.\nTTT\n...\n`], 0);
+  let shape = new RotatingShape([`.T.\nTTT\n...\n`], 0);
   beforeEach(() => {
     board = new Board(10, 6);
     board.drop(shape);

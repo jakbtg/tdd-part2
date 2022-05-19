@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
-import { RotatingShapeNew } from "../src/RotatingShapeNew.mjs";
+import { RotatingShape } from "../src/RotatingShape.mjs";
 
 function moveToSide(board, left) {
     for (let i = 0; i < 10; i++) {
@@ -20,7 +20,7 @@ function fallToBottom(board) {
 
 describe("Rotating falling tetrominoes", () => {
     let board;
-    let shape = new RotatingShapeNew([
+    let shape = new RotatingShape([
         `.T.\nTTT\n...\n`,
         `.T.\n.TT\n.T.\n`,
         `...\nTTT\n.T.\n`,
@@ -58,8 +58,8 @@ describe("Rotating falling tetrominoes", () => {
 
 describe("Rotating falling tetrominoes when there is no space to rotate", () => {
     let board;
-    let otherShape = new RotatingShapeNew([`.OO\n.OO\n...\n`], 0);
-    let shape = new RotatingShapeNew(
+    let otherShape = new RotatingShape([`.OO\n.OO\n...\n`], 0);
+    let shape = new RotatingShape(
         ['....\n....\nIIII\n....\n....\n',
          '..I.\n..I.\n..I.\n..I.\n....\n'], 0);
     beforeEach(() => {
@@ -150,7 +150,7 @@ describe("Rotating falling tetrominoes when there is no space to rotate", () => 
 
 describe("Wallkick", () => {
     let board;
-    let shape = new RotatingShapeNew(
+    let shape = new RotatingShape(
         ['....\n....\nIIII\n....\n....\n',
          '..I.\n..I.\n..I.\n..I.\n....\n'], 0);
 
