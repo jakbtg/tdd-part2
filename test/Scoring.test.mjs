@@ -1,7 +1,6 @@
 import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
 import { RotatingShape } from "../src/RotatingShape.mjs";
-import { ScoringSystem } from "../src/ScoringSystem.mjs";
 import { fallToBottom } from "./UtilityFunctions.mjs";
 import { moveToSide } from "./UtilityFunctions.mjs";
 

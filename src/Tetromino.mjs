@@ -1,7 +1,7 @@
-import { RotatingShapeNew } from "./RotatingShapeNew.mjs";
+import { RotatingShape } from "./RotatingShape.mjs";
 
-export class TetrominoesRotationSystem {
-    static T_SHAPE_NEW = new RotatingShapeNew(
+export class Tetromino {
+    static T_SHAPE = new RotatingShape(
         ["" +
         "....\n" +
         "TTT.\n" +
@@ -18,7 +18,7 @@ export class TetrominoesRotationSystem {
         ".T..\n" +
         ".TT.\n" +
         ".T..\n"], 0);
-    static L_SHAPE_NEW = new RotatingShapeNew(
+    static L_SHAPE = new RotatingShape(
         ["" +
         "....\n" +
         "LLL.\n" +
@@ -35,7 +35,7 @@ export class TetrominoesRotationSystem {
         ".L..\n" +
         ".L..\n" +
         ".LL.\n"], 0);
-    static J_SHAPE_NEW = new RotatingShapeNew(
+    static J_SHAPE = new RotatingShape(
         ["" +
         "....\n" +
         ".JJJ\n" +
@@ -52,7 +52,7 @@ export class TetrominoesRotationSystem {
         ".JJ.\n" +
         ".J..\n" +
         ".J..\n"], 0);
-    static I_SHAPE_NEW = new RotatingShapeNew(
+    static I_SHAPE = new RotatingShape(
         ["" +
         "....\n" +
         "IIII\n" +
@@ -63,7 +63,7 @@ export class TetrominoesRotationSystem {
         "..I.\n" +
         "..I.\n" +
         "..I.\n"], 0);
-    static S_SHAPE_NEW = new RotatingShapeNew(
+    static S_SHAPE = new RotatingShape(
         ["" +
         "....\n" +
         ".SS.\n" +
@@ -72,7 +72,7 @@ export class TetrominoesRotationSystem {
         "S...\n" +
         "SS..\n" +
         ".S..\n"], 0);
-    static Z_SHAPE_NEW = new RotatingShapeNew(
+    static Z_SHAPE = new RotatingShape(
         ["" +
         "....\n" +
         "ZZ..\n" +
@@ -81,7 +81,7 @@ export class TetrominoesRotationSystem {
         "..Z.\n" +
         ".ZZ.\n" +
         ".Z..\n"], 0);
-    static O_SHAPE_NEW = new RotatingShapeNew(
+    static O_SHAPE = new RotatingShape(
         ["" +
         ".OO.\n" +
         ".OO.\n"], 0);
