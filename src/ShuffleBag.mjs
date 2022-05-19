@@ -34,5 +34,4 @@ export class ShuffleBag {
     getLength() {
         return this.bag.length;
     }
-
 }

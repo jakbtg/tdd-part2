@@ -4,6 +4,7 @@ import { Block } from "../src/Block.mjs";
 
 describe("Falling blocks", () => {
   let board;
+
   beforeEach(() => {
     board = new Board(3, 3);
   });
@@ -18,6 +19,7 @@ describe("Falling blocks", () => {
 
 
   describe("When a block is dropped", () => {
+
     beforeEach(() => {
       board.drop(new Block("X"));
     });
@@ -49,8 +51,8 @@ describe("Falling blocks", () => {
   });
 
 
-
   describe("When a block reaches the bottom", () => {
+
     beforeEach(() => {
       board.drop(new Block("X"));
       board.tick();
@@ -81,9 +83,9 @@ describe("Falling blocks", () => {
     });
   });
 
-
   
   describe("When a block lands on another block", () => {
+
     beforeEach(() => {
       board.drop(new Block("X"));
       board.tick();
@@ -116,5 +118,5 @@ describe("Falling blocks", () => {
       expect(board.hasFalling(), "the block should stop moving").to.be.false;
     });
   });
-  
+
 });

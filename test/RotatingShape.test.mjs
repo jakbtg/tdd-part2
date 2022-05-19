@@ -3,6 +3,7 @@ import { RotatingShape } from "../src/RotatingShape.mjs";
 
 describe("Rotating shape", () => {
     let shape;
+    
     beforeEach(() => {
         shape = new RotatingShape([
             `.T.\nTTT\n...\n`,
@@ -10,7 +11,6 @@ describe("Rotating shape", () => {
             `...\nTTT\n.T.\n`,
             `.T.\nTT.\n.T.\n`], 0);
     });
-
 
     it("initial orientation", () => {
         expect(shape.toString()).to.equalShape(

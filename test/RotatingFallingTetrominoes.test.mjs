@@ -11,6 +11,7 @@ describe("Rotating falling tetrominoes", () => {
         `.T.\n.TT\n.T.\n`,
         `...\nTTT\n.T.\n`,
         `.T.\nTT.\n.T.\n`], 0);
+
     beforeEach(() => {
         board = new Board(10, 6);
         board.drop(shape);
@@ -47,7 +48,8 @@ describe("Rotating falling tetrominoes when there is no space to rotate", () => 
     let otherShape = new RotatingShape([`.OO\n.OO\n...\n`], 0);
     let shape = new RotatingShape(
         ['....\n....\nIIII\n....\n....\n',
-         '..I.\n..I.\n..I.\n..I.\n....\n'], 0);
+            '..I.\n..I.\n..I.\n..I.\n....\n'], 0);
+
     beforeEach(() => {
         board = new Board(11, 7);
         board.drop(otherShape);
@@ -138,7 +140,7 @@ describe("Wallkick", () => {
     let board;
     let shape = new RotatingShape(
         ['....\n....\nIIII\n....\n....\n',
-         '..I.\n..I.\n..I.\n..I.\n....\n'], 0);
+            '..I.\n..I.\n..I.\n..I.\n....\n'], 0);
 
     beforeEach(() => {
         board = new Board(10, 6);

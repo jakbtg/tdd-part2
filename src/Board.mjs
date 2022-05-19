@@ -13,7 +13,6 @@ class Point {
   }
 }
 
-
 class MovableShape {
   movShape;
   shapeRow;
@@ -178,7 +177,7 @@ export class Board {
 
   isAllowedMove(test) {
     return !this.fallingHitsBoardLimits(test) && !this.fallingHitsStationary(test);
-  } 
+  }
 
 
   fallingHitsStationary(shape) {

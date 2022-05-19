@@ -8,6 +8,7 @@ import { moveToBottom } from "./UtilityFunctions.mjs";
 describe("Moving falling tetrominoes", () => {
     let board;
     let shape = new RotatingShape([`.T.\nTTT\n...\n`], 0);
+    
     beforeEach(() => {
         board = new Board(10, 6);
         board.drop(shape);

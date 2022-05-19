@@ -71,6 +71,5 @@ describe("Remove full rows from the board", () => {
              IIII.LIIII
              IIIIP.IIII`
         );
-
     });
 });

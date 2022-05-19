@@ -15,7 +15,6 @@ function generateAllTetrominoes() {
     return tetrominoes;
 }
 
-
 describe("Shuffle bag", () => {
     let bag;
     let tetrominoes = [];
