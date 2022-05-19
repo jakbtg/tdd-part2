@@ -1,9 +1,10 @@
-import { RotatingShape } from "./RotatingShape.mjs";
 import { Tetromino } from "./Tetromino.mjs";
 
 export class ShuffleBag {
     bag;
-    
+    currentPosition = -1;
+    currentShape;
+
     constructor() {
         this.bag = [];
         this.bag.push(Tetromino.I_SHAPE);
@@ -16,7 +17,18 @@ export class ShuffleBag {
     }
 
     getNext() {
-        return new RotatingShape(["."], 0);
+        if (this.currentPosition < 1) {
+            this.currentPosition = 6;
+            this.currentShape = this.bag[0];
+            return this.currentShape;
+        }
+
+        var pos = Math.floor(Math.random() * this.currentPosition);
+        this.currentShape = this.bag[pos];
+        this.bag[pos] = this.bag[this.currentPosition];
+        this.bag[this.currentPosition] = this.currentShape;
+        this.currentPosition--;
+        return this.currentShape;
     }
 
     getLength() {
