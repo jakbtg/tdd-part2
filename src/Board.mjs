@@ -210,10 +210,8 @@ export class Board {
     for (let row = 0; row < this.height(); row++) {
       if (this.isRowFull(row)) {
         this.removeRowAt(row);
-        return true;
       }
     }
-    return false;
   }
 
   isRowFull(row) {
