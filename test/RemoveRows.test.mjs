@@ -14,16 +14,13 @@ function dropTwoShapesAtSides(board, shape) {
 }
 
 describe("Remove full rows from the board", () => {
-    let board = new Board(10, 6);
+    let board;
     let shape = new RotatingShape(['....\n....\nIIII\n....\n....\n'], 0);
     let otherShape = new RotatingShape([`.OO\n.OO\n...\n`], 0);
 
     beforeEach(() => {
-        dropTwoShapesAtSides(board, shape);
-    });
-
-    afterEach(() => {
         board = new Board(10, 6);
+        dropTwoShapesAtSides(board, shape);
     });
 
     it("can remove one row", () => {
