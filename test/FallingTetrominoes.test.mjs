@@ -19,8 +19,6 @@ describe("Falling tetrominoes", () => {
   });
 
   it("start from the top middle", () => {
-    // board.drop(shape);
-
     expect(board.toString()).to.equalShape(
       `....T.....
        ...TTT....
@@ -32,7 +30,6 @@ describe("Falling tetrominoes", () => {
   });
 
   it("stop when they hit the bottom", () => {
-    // board.drop(Tetromino.T_SHAPE);
     fallToBottom(board);
 
     expect(board.toString()).to.equalShape(
@@ -46,9 +43,8 @@ describe("Falling tetrominoes", () => {
   });
 
   it("stop when they land on another block", () => {
-    // board.drop(Tetromino.T_SHAPE);
     fallToBottom(board);
-    board.drop(Tetromino.T_SHAPE);
+    board.drop(new RotatingShapeNew([`.T.\nTTT\n...\n`], 0));
     fallToBottom(board);
 
     expect(board.toString()).to.equalShape(
