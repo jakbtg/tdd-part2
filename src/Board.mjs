@@ -1,3 +1,4 @@
+import { ScoringSystem } from "./ScoringSystem.mjs";
 import { shapeToString } from "./shape.mjs";
 
 const EMPTY = ".";
@@ -76,11 +77,13 @@ export class Board {
   boardHeight;
   stationary;
   fallingShape;
+  score;
 
   constructor(width, height) {
     this.boardWidth = width;
     this.boardHeight = height;
     this.stationary = this.emptyBoard(height, width);
+    this.score = new ScoringSystem();
   }
 
   emptyBoard(height, width) {
@@ -207,11 +210,14 @@ export class Board {
   }
 
   removeRows() {
+    var numRowsRemoved = 0;
     for (let row = 0; row < this.height(); row++) {
       if (this.isRowFull(row)) {
         this.removeRowAt(row);
+        numRowsRemoved++;
       }
     }
+    this.score.addPoints(numRowsRemoved);
   }
 
   isRowFull(row) {
@@ -236,5 +242,9 @@ export class Board {
         this.stationary[i][col] = this.stationary[i - 1][col];
       }
     }
+  }
+
+  getScore() {
+    return this.score.score;
   }
 }

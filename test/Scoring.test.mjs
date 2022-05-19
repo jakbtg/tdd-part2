@@ -17,6 +17,7 @@ function dropTwoShapesAtSides(board, shape) {
 describe("Scoring system", () => {
     let board;
     let shape = new RotatingShape(['....\nIIII\nIIII\n....\n....\n'], 0);
+    let one = new RotatingShape([`OO\n`], 0);
     let score = new ScoringSystem();
 
     beforeEach(() => {
@@ -25,7 +26,9 @@ describe("Scoring system", () => {
     });
 
     it("points for one row removed", () => {
-        expect(score.score).to.equal(40);
+        board.drop(one);
+        fallToBottom(board);
+        expect(board.getScore()).to.equal(40);
     });
 
 });
