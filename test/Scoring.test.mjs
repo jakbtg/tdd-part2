@@ -18,7 +18,9 @@ describe("Scoring system", () => {
     let board;
     let shape = new RotatingShape(['....\nIIII\nIIII\n....\n....\n'], 0);
     let one = new RotatingShape([`OO\n`], 0);
-    let score = new ScoringSystem();
+    let two = new RotatingShape([`OO\nOO\n`], 0);
+    let three = new RotatingShape([`OO\nOO\nOO\n`], 0);
+    let four = new RotatingShape([`OO\nOO\nOO\nOO\n`], 0);
 
     beforeEach(() => {
         board = new Board(10, 6);
@@ -31,4 +33,9 @@ describe("Scoring system", () => {
         expect(board.getScore()).to.equal(40);
     });
 
+    it("points for two rows removed", () => {
+        board.drop(two);
+        fallToBottom(board);
+        expect(board.getScore()).to.equal(100);
+    });
 });
