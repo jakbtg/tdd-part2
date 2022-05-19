@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
-import { Tetromino } from "../src/Tetromino.mjs";
+import { RotatingShapeNew } from "../src/RotatingShapeNew.mjs";
 
 function moveToSide(board, left) {
     for (let i = 0; i < 10; i++) {
@@ -20,9 +20,14 @@ function fallToBottom(board) {
 
 describe("Rotating falling tetrominoes", () => {
     let board;
+    let shape = new RotatingShapeNew([
+        `.T.\nTTT\n...\n`,
+        `.T.\n.TT\n.T.\n`,
+        `...\nTTT\n.T.\n`,
+        `.T.\nTT.\n.T.\n`], 0);
     beforeEach(() => {
         board = new Board(10, 6);
-        board.drop(Tetromino.T_SHAPE);
+        board.drop(shape);
     });
 
     it("a falling tetromino can be rotated right/clockwise", () => {
@@ -53,24 +58,28 @@ describe("Rotating falling tetrominoes", () => {
 
 describe("Rotating falling tetrominoes when there is no space to rotate", () => {
     let board;
+    let otherShape = new RotatingShapeNew([`.OO\n.OO\n...\n`], 0);
+    let shape = new RotatingShapeNew(
+        ['....\n....\nIIII\n....\n....\n',
+         '..I.\n..I.\n..I.\n..I.\n....\n'], 0);
     beforeEach(() => {
         board = new Board(11, 7);
-        board.drop(Tetromino.O_SHAPE);
+        board.drop(otherShape);
         board.moveLeft();
         board.moveLeft();
         fallToBottom(board);
-        board.drop(Tetromino.O_SHAPE);
+        board.drop(otherShape);
         board.moveLeft();
         board.moveLeft();
         fallToBottom(board);
-        board.drop(Tetromino.O_SHAPE);
+        board.drop(otherShape);
         board.moveRight();
         fallToBottom(board);
-        board.drop(Tetromino.O_SHAPE);
+        board.drop(otherShape);
         board.moveRight();
         fallToBottom(board);
 
-        board.drop(Tetromino.I_SHAPE);
+        board.drop(shape);
     });
 
     it("cannot rotate right/clockwise because of other blocks", () => {
@@ -141,9 +150,13 @@ describe("Rotating falling tetrominoes when there is no space to rotate", () => 
 
 describe("Wallkick", () => {
     let board;
+    let shape = new RotatingShapeNew(
+        ['....\n....\nIIII\n....\n....\n',
+         '..I.\n..I.\n..I.\n..I.\n....\n'], 0);
+
     beforeEach(() => {
         board = new Board(10, 6);
-        board.drop(Tetromino.I_SHAPE);
+        board.drop(shape);
         board.rotateRight();
     });
 
